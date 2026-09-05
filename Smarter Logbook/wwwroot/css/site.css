@@ -56,7 +56,7 @@ h2 { margin: 0; font-size: 1.35rem; font-weight: 700; }
 .btn-outline-primary:hover { background: var(--green); border-color: var(--green); }
 
 .section-heading { display: flex; justify-content: space-between; gap: 1rem; align-items: flex-end; margin-bottom: 1.25rem; }
-.flight-table { min-width: 1300px; margin: 0; font-size: .84rem; }
+.flight-table { min-width: 1480px; margin: 0; font-size: .84rem; }
 .flight-table th { padding: .65rem .35rem; color: var(--muted); font-size: .7rem; font-weight: 750; letter-spacing: .04em; text-transform: uppercase; white-space: nowrap; }
 .flight-table td { padding: .35rem .2rem; vertical-align: middle; }
 .flight-table input { width: 100%; min-width: 84px; padding: .42rem .45rem; border: 1px solid var(--line); border-radius: .35rem; background: #fff; color: var(--ink); }

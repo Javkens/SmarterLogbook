@@ -20,13 +20,15 @@ public static class FlightLogCsvConverter
         new("takeoffTime", "Takeoff Time", flight => flight.TakeoffTime),
         new("landingTime", "Landing Time", flight => flight.LandingTime),
         new("total", "Total (hh:mm)", flight => flight.Total),
+        new("pilotInCommand", "Pilot in Command", flight => flight.PilotInCommand),
+        new("dualReceiver", "Dual Receiver", flight => flight.DualReceiver),
         new("takeoffsDay", "Takeoffs (day)", flight => flight.TakeoffsDay),
         new("remarks", "Remarks", flight => flight.Remarks)
     ];
 
     private static readonly string[] RequiredHeaders =
     [
-        "Data", "Lista", "SP", "Zad./Cw.", "Lot. odl.", "Odblok.", "Start",
+        "Data", "Lista", "SP", "Instr./Pas.", "Zad./Cw.", "Lot. odl.", "Odblok.", "Start",
         "Lotn. przyl.", "Ląd.", "Blok.", "Czas lotu", "Starty"
     ];
 
@@ -85,6 +87,8 @@ public static class FlightLogCsvConverter
         var separator = aircraftAndModel.IndexOfAny([' ', '\t']);
         var aircraft = separator < 0 ? aircraftAndModel : aircraftAndModel[..separator];
         var aircraftModel = separator < 0 ? string.Empty : aircraftAndModel[(separator + 1)..].Trim();
+        var total = Value(row, headers, "Czas lotu");
+        var hasInstructor = !string.IsNullOrWhiteSpace(Value(row, headers, "Instr./Pas."));
 
         return new FlightLogRowViewModel
         {
@@ -99,7 +103,9 @@ public static class FlightLogCsvConverter
             Arrived = Value(row, headers, "Blok."),
             TakeoffTime = Value(row, headers, "Start"),
             LandingTime = Value(row, headers, "Ląd."),
-            Total = Value(row, headers, "Czas lotu"),
+            Total = total,
+            PilotInCommand = hasInstructor ? string.Empty : total,
+            DualReceiver = hasInstructor ? total : string.Empty,
             TakeoffsDay = Value(row, headers, "Starty"),
             Remarks = Value(row, headers, "Zad./Cw.")
         };

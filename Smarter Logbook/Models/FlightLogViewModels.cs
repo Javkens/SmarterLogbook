@@ -23,6 +23,8 @@ public class FlightLogRowViewModel
     public string TakeoffTime { get; set; } = string.Empty;
     public string LandingTime { get; set; } = string.Empty;
     public string Total { get; set; } = string.Empty;
+    public string PilotInCommand { get; set; } = string.Empty;
+    public string DualReceiver { get; set; } = string.Empty;
     public string TakeoffsDay { get; set; } = string.Empty;
     public string Remarks { get; set; } = string.Empty;
 }
