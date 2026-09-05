@@ -5,6 +5,25 @@ namespace Smarter_Logbook.Services;
 
 public static class FlightLogCsvConverter
 {
+    public sealed record OutputColumn(string Key, string Header, Func<FlightLogRowViewModel, string> Value);
+
+    public static readonly IReadOnlyList<OutputColumn> OutputColumns =
+    [
+        new("date", "Date (yyyy-mm-dd)", flight => flight.Date),
+        new("flightNumber", "Flight #", flight => flight.FlightNumber),
+        new("aircraft", "Aircraft", flight => flight.Aircraft),
+        new("aircraftModel", "Aircraft Model", flight => flight.AircraftModel),
+        new("from", "From", flight => flight.From),
+        new("to", "To", flight => flight.To),
+        new("departed", "Departed", flight => flight.Departed),
+        new("arrived", "Arrived", flight => flight.Arrived),
+        new("takeoffTime", "Takeoff Time", flight => flight.TakeoffTime),
+        new("landingTime", "Landing Time", flight => flight.LandingTime),
+        new("total", "Total (hh:mm)", flight => flight.Total),
+        new("takeoffsDay", "Takeoffs (day)", flight => flight.TakeoffsDay),
+        new("remarks", "Remarks", flight => flight.Remarks)
+    ];
+
     private static readonly string[] RequiredHeaders =
     [
         "Data", "Lista", "SP", "Zad./Cw.", "Lot. odl.", "Odblok.", "Start",
@@ -40,25 +59,21 @@ public static class FlightLogCsvConverter
             .Select(row => CreateFlight(row, headers))
             .ToList();
 
-        return new FlightLogPageViewModel { Flights = flights };
+        return new FlightLogPageViewModel
+        {
+            Flights = flights,
+            SelectedColumns = OutputColumns.Select(column => column.Key).ToList()
+        };
     }
 
-    public static byte[] Export(IEnumerable<FlightLogRowViewModel> flights)
+    public static byte[] Export(IEnumerable<FlightLogRowViewModel> flights, IEnumerable<string> selectedColumnKeys)
     {
-        IReadOnlyList<string> outputHeaders =
-        [
-            "Date (yyyy-mm-dd)", "Flight #", "Aircraft", "Aircraft Model", "From", "To",
-            "Departed", "Arrived", "Takeoff Time", "Landing Time", "Total (hh:mm)",
-            "Takeoffs (day)", "Remarks"
-        ];
-        var rows = new List<IReadOnlyList<string>> { outputHeaders };
+        var selectedKeys = selectedColumnKeys.ToHashSet(StringComparer.OrdinalIgnoreCase);
+        var selectedColumns = OutputColumns.Where(column => selectedKeys.Contains(column.Key)).ToList();
+        var rows = new List<IReadOnlyList<string>> { selectedColumns.Select(column => column.Header).ToList() };
 
-        rows.AddRange(flights.Select(flight => (IReadOnlyList<string>)
-        [
-            flight.Date, flight.FlightNumber, flight.Aircraft, flight.AircraftModel, flight.From, flight.To,
-            flight.Departed, flight.Arrived, flight.TakeoffTime, flight.LandingTime, flight.Total,
-            flight.TakeoffsDay, flight.Remarks
-        ]));
+        rows.AddRange(flights.Select(flight =>
+            (IReadOnlyList<string>)selectedColumns.Select(column => column.Value(flight)).ToList()));
 
         var csv = string.Join("\r\n", rows.Select(row => string.Join(',', row.Select(Escape)))) + "\r\n";
         return new UTF8Encoding(encoderShouldEmitUTF8Identifier: true).GetBytes(csv);
@@ -73,6 +88,7 @@ public static class FlightLogCsvConverter
 
         return new FlightLogRowViewModel
         {
+            Selected = true,
             Date = Value(row, headers, "Data"),
             FlightNumber = Value(row, headers, "Lista"),
             Aircraft = aircraft,

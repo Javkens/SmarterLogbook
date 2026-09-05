@@ -9,7 +9,10 @@ public class HomeController : Controller
 {
     public IActionResult Index()
     {
-        return View(new FlightLogPageViewModel());
+        return View(new FlightLogPageViewModel
+        {
+            SelectedColumns = FlightLogCsvConverter.OutputColumns.Select(column => column.Key).ToList()
+        });
     }
 
     [HttpPost]
@@ -44,7 +47,20 @@ public class HomeController : Controller
     [ValidateAntiForgeryToken]
     public IActionResult Download(FlightLogPageViewModel model)
     {
-        var csv = FlightLogCsvConverter.Export(model.Flights);
+        if (model.SelectedColumns.Count == 0)
+        {
+            model.ErrorMessage = "Select at least one column to include in the downloaded CSV.";
+            return View("Index", model);
+        }
+
+        var selectedFlights = model.Flights.Where(flight => flight.Selected).ToList();
+        if (selectedFlights.Count == 0)
+        {
+            model.ErrorMessage = "Select at least one flight to include in the downloaded CSV.";
+            return View("Index", model);
+        }
+
+        var csv = FlightLogCsvConverter.Export(selectedFlights, model.SelectedColumns);
         return File(csv, "text/csv; charset=utf-8", "smarter-logbook.csv");
     }
 

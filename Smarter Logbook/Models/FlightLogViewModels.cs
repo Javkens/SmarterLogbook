@@ -4,11 +4,14 @@ public class FlightLogPageViewModel
 {
     public List<FlightLogRowViewModel> Flights { get; set; } = [];
 
+    public List<string> SelectedColumns { get; set; } = [];
+
     public string? ErrorMessage { get; set; }
 }
 
 public class FlightLogRowViewModel
 {
+    public bool Selected { get; set; } = true;
     public string Date { get; set; } = string.Empty;
     public string FlightNumber { get; set; } = string.Empty;
     public string Aircraft { get; set; } = string.Empty;

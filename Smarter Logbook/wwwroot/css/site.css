@@ -56,15 +56,20 @@ h2 { margin: 0; font-size: 1.35rem; font-weight: 700; }
 .btn-outline-primary:hover { background: var(--green); border-color: var(--green); }
 
 .section-heading { display: flex; justify-content: space-between; gap: 1rem; align-items: flex-end; margin-bottom: 1.25rem; }
-.flight-table { min-width: 1260px; margin: 0; font-size: .84rem; }
+.flight-table { min-width: 1300px; margin: 0; font-size: .84rem; }
 .flight-table th { padding: .65rem .35rem; color: var(--muted); font-size: .7rem; font-weight: 750; letter-spacing: .04em; text-transform: uppercase; white-space: nowrap; }
 .flight-table td { padding: .35rem .2rem; vertical-align: middle; }
 .flight-table input { width: 100%; min-width: 84px; padding: .42rem .45rem; border: 1px solid var(--line); border-radius: .35rem; background: #fff; color: var(--ink); }
 .flight-table input:focus { outline: 3px solid rgba(20, 108, 67, .16); border-color: var(--green); }
 .flight-table td:nth-child(2) input, .flight-table td:nth-child(13) input { min-width: 135px; }
 .flight-table td:nth-child(1) input { min-width: 128px; }
-.remove-row { width: 30px; height: 30px; border: 0; border-radius: .35rem; color: #9b2c2c; background: #fff2f2; font-size: 1.25rem; line-height: 1; }
-.remove-row:hover { background: #ffe2e2; }
+.include-flight { width: 2.5rem; padding-right: 0 !important; padding-left: 0 !important; text-align: center; }
+.flight-table .include-flight input { width: 1rem; min-width: 1rem; height: 1rem; accent-color: var(--green); }
+.column-picker { margin: 1.25rem 0 0; padding: 1rem; border: 1px solid var(--line); border-radius: .6rem; }
+.column-picker legend { float: none; width: auto; margin: 0; padding: 0 .25rem; color: var(--muted); font-size: .78rem; font-weight: 750; letter-spacing: .04em; text-transform: uppercase; }
+.column-options { display: flex; flex-wrap: wrap; gap: .55rem 1rem; }
+.column-options label { display: inline-flex; align-items: center; gap: .35rem; color: var(--ink); cursor: pointer; font-size: .88rem; }
+.column-options input { width: 1rem; height: 1rem; accent-color: var(--green); }
 .export-bar { display: flex; align-items: center; justify-content: space-between; margin-top: 1.25rem; padding-top: 1.25rem; border-top: 1px solid var(--line); font-weight: 650; }
 .step-number { display: inline-grid; width: 1.5rem; height: 1.5rem; margin-right: .4rem; place-items: center; border-radius: 50%; color: white; background: var(--green); font-size: .78rem; }
 
