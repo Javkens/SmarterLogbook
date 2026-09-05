@@ -1,0 +1,17 @@
+# Replace this with the globally unique Fly.io application name created by `fly launch --no-deploy`.
+app = "smarter-logbook-replace-me"
+primary_region = "waw"
+
+[build]
+  dockerfile = "Dockerfile"
+
+[env]
+  ASPNETCORE_ENVIRONMENT = "Production"
+
+[http_service]
+  internal_port = 8080
+  force_https = true
+  auto_stop_machines = "stop"
+  auto_start_machines = true
+  min_machines_running = 0
+  processes = ["app"]
