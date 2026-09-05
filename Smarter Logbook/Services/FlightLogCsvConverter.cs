@@ -111,7 +111,7 @@ public static class FlightLogCsvConverter
         return index < row.Count ? row[index].Trim() : string.Empty;
     }
 
-    private static string Escape(string value) => $"\"{value.Replace("\"", "\"\"")}\"";
+    private static string Escape(string? value) => $"\"{(value ?? string.Empty).Replace("\"", "\"\"")}\"";
 
     private static List<List<string>> Parse(string csv)
     {
