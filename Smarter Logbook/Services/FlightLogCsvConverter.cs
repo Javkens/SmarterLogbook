@@ -23,6 +23,7 @@ public static class FlightLogCsvConverter
         new("pilotInCommand", "Pilot in Command (duration)", flight => flight.PilotInCommand),
         new("dualReceived", "Dual Received (duration)", flight => flight.DualReceived),
         new("takeoffsDay", "Takeoffs (day)", flight => flight.TakeoffsDay),
+        new("landingsDay", "Landings (day)", flight => flight.LandingsDay),
         new("remarks", "Remarks", flight => flight.Remarks)
     ];
 
@@ -107,6 +108,7 @@ public static class FlightLogCsvConverter
             PilotInCommand = hasInstructor ? string.Empty : total,
             DualReceived = hasInstructor ? total : string.Empty,
             TakeoffsDay = Value(row, headers, "Starty"),
+            LandingsDay = Value(row, headers, "Starty"),
             Remarks = Value(row, headers, "Zad./Cw.")
         };
     }

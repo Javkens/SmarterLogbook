@@ -48,7 +48,7 @@
                     <tr>
                         <th class="include-flight"><span class="visually-hidden">Include</span></th><th>Date</th><th>Flight #</th><th>Aircraft</th><th>Model</th><th>From</th><th>To</th>
                         <th>Departed</th><th>Arrived</th><th>Takeoff</th><th>Landing</th><th>Total</th><th>Pilot in Command</th><th>Dual Received</th>
-                        <th>Takeoffs</th><th>Remarks</th>
+                        <th>Takeoffs</th><th>Landings</th><th>Remarks</th>
                     </tr>
                     </thead>
                     <tbody id="flight-rows">
@@ -72,6 +72,7 @@
                             <td><input asp-for="Flights[index].PilotInCommand" pattern="[0-9]{2}:[0-9]{2}" /></td>
                             <td><input asp-for="Flights[index].DualReceived" pattern="[0-9]{2}:[0-9]{2}" /></td>
                             <td><input asp-for="Flights[index].TakeoffsDay" inputmode="numeric" /></td>
+                            <td><input asp-for="Flights[index].LandingsDay" inputmode="numeric" /></td>
                             <td><input asp-for="Flights[index].Remarks" /></td>
                         </tr>
                     }
@@ -118,6 +119,7 @@
             <td><input name="Flights[__index__].PilotInCommand" pattern="[0-9]{2}:[0-9]{2}" /></td>
             <td><input name="Flights[__index__].DualReceived" pattern="[0-9]{2}:[0-9]{2}" /></td>
             <td><input name="Flights[__index__].TakeoffsDay" inputmode="numeric" /></td>
+            <td><input name="Flights[__index__].LandingsDay" inputmode="numeric" /></td>
             <td><input name="Flights[__index__].Remarks" /></td>
         </tr>
     </template>
