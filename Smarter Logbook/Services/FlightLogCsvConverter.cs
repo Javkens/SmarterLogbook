@@ -20,8 +20,8 @@ public static class FlightLogCsvConverter
         new("takeoffTime", "Takeoff Time", flight => flight.TakeoffTime),
         new("landingTime", "Landing Time", flight => flight.LandingTime),
         new("total", "Total (hh:mm)", flight => flight.Total),
-        new("pilotInCommand", "Pilot in Command", flight => flight.PilotInCommand),
-        new("dualReceiver", "Dual Receiver", flight => flight.DualReceiver),
+        new("pilotInCommand", "Pilot in Command (duration)", flight => flight.PilotInCommand),
+        new("dualReceived", "Dual Received (duration)", flight => flight.DualReceived),
         new("takeoffsDay", "Takeoffs (day)", flight => flight.TakeoffsDay),
         new("remarks", "Remarks", flight => flight.Remarks)
     ];
@@ -105,7 +105,7 @@ public static class FlightLogCsvConverter
             LandingTime = Value(row, headers, "Ląd."),
             Total = total,
             PilotInCommand = hasInstructor ? string.Empty : total,
-            DualReceiver = hasInstructor ? total : string.Empty,
+            DualReceived = hasInstructor ? total : string.Empty,
             TakeoffsDay = Value(row, headers, "Starty"),
             Remarks = Value(row, headers, "Zad./Cw.")
         };

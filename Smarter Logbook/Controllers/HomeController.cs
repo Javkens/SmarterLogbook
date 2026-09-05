@@ -61,7 +61,8 @@ public class HomeController : Controller
         }
 
         var csv = FlightLogCsvConverter.Export(selectedFlights, model.SelectedColumns);
-        return File(csv, "text/csv; charset=utf-8", "smarter-logbook.csv");
+        var fileName = $"smarter-logbook_{DateTime.Now:yyyy-MM-dd_HH-mm-ss}.csv";
+        return File(csv, "text/csv; charset=utf-8", fileName);
     }
 
     public IActionResult Privacy()

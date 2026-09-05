@@ -36,7 +36,7 @@
             <div>
                 <p class="eyebrow">@Model.Flights.Count flight@(Model.Flights.Count == 1 ? string.Empty : "s") found</p>
                 <h2 id="review-title">2. Review and edit</h2>
-                <p>Change any value before exporting. A value in <em>Instr./Pas.</em> sends total time to Dual Receiver; otherwise it goes to Pilot in Command.</p>
+                <p>Change any value before exporting. A value in <em>Instr./Pas.</em> sends total time to Dual Received; otherwise it goes to Pilot in Command.</p>
             </div>
             <button class="btn btn-outline-primary" type="button" id="add-row">Add flight</button>
         </div>
@@ -47,7 +47,7 @@
                     <thead>
                     <tr>
                         <th class="include-flight"><span class="visually-hidden">Include</span></th><th>Date</th><th>Flight #</th><th>Aircraft</th><th>Model</th><th>From</th><th>To</th>
-                        <th>Departed</th><th>Arrived</th><th>Takeoff</th><th>Landing</th><th>Total</th><th>Pilot in Command</th><th>Dual Receiver</th>
+                        <th>Departed</th><th>Arrived</th><th>Takeoff</th><th>Landing</th><th>Total</th><th>Pilot in Command</th><th>Dual Received</th>
                         <th>Takeoffs</th><th>Remarks</th>
                     </tr>
                     </thead>
@@ -70,7 +70,7 @@
                             <td><input asp-for="Flights[index].LandingTime" type="time" /></td>
                             <td><input asp-for="Flights[index].Total" pattern="[0-9]{2}:[0-9]{2}" /></td>
                             <td><input asp-for="Flights[index].PilotInCommand" pattern="[0-9]{2}:[0-9]{2}" /></td>
-                            <td><input asp-for="Flights[index].DualReceiver" pattern="[0-9]{2}:[0-9]{2}" /></td>
+                            <td><input asp-for="Flights[index].DualReceived" pattern="[0-9]{2}:[0-9]{2}" /></td>
                             <td><input asp-for="Flights[index].TakeoffsDay" inputmode="numeric" /></td>
                             <td><input asp-for="Flights[index].Remarks" /></td>
                         </tr>
@@ -116,7 +116,7 @@
             <td><input name="Flights[__index__].LandingTime" type="time" /></td>
             <td><input name="Flights[__index__].Total" pattern="[0-9]{2}:[0-9]{2}" /></td>
             <td><input name="Flights[__index__].PilotInCommand" pattern="[0-9]{2}:[0-9]{2}" /></td>
-            <td><input name="Flights[__index__].DualReceiver" pattern="[0-9]{2}:[0-9]{2}" /></td>
+            <td><input name="Flights[__index__].DualReceived" pattern="[0-9]{2}:[0-9]{2}" /></td>
             <td><input name="Flights[__index__].TakeoffsDay" inputmode="numeric" /></td>
             <td><input name="Flights[__index__].Remarks" /></td>
         </tr>
