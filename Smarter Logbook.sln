@@ -1,0 +1,16 @@
+﻿
+Microsoft Visual Studio Solution File, Format Version 12.00
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Smarter Logbook", "Smarter Logbook\Smarter Logbook.csproj", "{D210031F-F098-4D91-9488-858CDB3F96BB}"
+EndProject
+Global
+	GlobalSection(SolutionConfigurationPlatforms) = preSolution
+		Debug|Any CPU = Debug|Any CPU
+		Release|Any CPU = Release|Any CPU
+	EndGlobalSection
+	GlobalSection(ProjectConfigurationPlatforms) = postSolution
+		{D210031F-F098-4D91-9488-858CDB3F96BB}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{D210031F-F098-4D91-9488-858CDB3F96BB}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{D210031F-F098-4D91-9488-858CDB3F96BB}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{D210031F-F098-4D91-9488-858CDB3F96BB}.Release|Any CPU.Build.0 = Release|Any CPU
+	EndGlobalSection
+EndGlobal

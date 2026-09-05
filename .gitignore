@@ -1,0 +1,19 @@
+# Build output
+[Bb]in/
+[Oo]bj/
+
+# JetBrains Rider / IntelliJ IDEA workspace files
+.idea/
+*.sln.iml
+
+# Visual Studio user and workspace files
+.vs/
+*.user
+*.suo
+*.userosscache
+*.sln.docstates
+
+# Local ASP.NET Core settings and logs
+appsettings.Local.json
+appsettings.*.Local.json
+logs/
