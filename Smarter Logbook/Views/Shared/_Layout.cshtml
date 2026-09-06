@@ -1,5 +1,7 @@
 ﻿@{
     var applicationVersion = typeof(Smarter_Logbook.Models.ErrorViewModel).Assembly.GetName().Version?.ToString(3) ?? "1.0.0";
+    var deployedCommit = Environment.GetEnvironmentVariable("RENDER_GIT_COMMIT");
+    var buildIdentifier = string.IsNullOrWhiteSpace(deployedCommit) ? "local" : deployedCommit[..Math.Min(deployedCommit.Length, 7)];
 }
 <!DOCTYPE html>
 <html lang="en">
@@ -35,8 +37,8 @@
 
 <footer class="border-top footer text-muted">
     <div class="container footer-content">
-        <span>&copy; 2026 Smarter Logbook</span>
-        <span class="footer-version">Software version @applicationVersion</span>
+        <span>&copy; 2026 Smarter Logbook · Artur Orawiec</span>
+        <span class="footer-version">Software version @applicationVersion · build @buildIdentifier</span>
     </div>
 </footer>
 <script src="~/lib/jquery/dist/jquery.min.js"></script>
