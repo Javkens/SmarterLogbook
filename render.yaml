@@ -1,0 +1,10 @@
+services:
+  - type: web
+    name: smarter-logbook
+    runtime: docker
+    plan: free
+    region: frankfurt
+    dockerfilePath: ./Dockerfile
+    dockerContext: .
+    healthCheckPath: /
+    autoDeployTrigger: checksPass
